@@ -1,36 +1,56 @@
 chrome.extension.sendRequest({method: "getLocalStorage", key: "users"}, function(response) {
   var users = response.data;
 
-  if (users) {
-  	users = users.split(" \n");
+  if (!users) return;
+
+	users = users.split("\n");
+  
+  // remove multiple, leading or trailing spaces
+  function trim(s) {
+  	s = s.replace(/(^\s*)|(\s*$)/gi,"");
+  	s = s.replace(/[ ]{2,}/gi," ");
+  	s = s.replace(/\n /,"\n");
+  	return s;
   }
+
+  var updatedUsers = [];
+  for (var i=0; i<users.length; i++) {
+    var u = trim(users[i]);
+    if (u.length > 0) updatedUsers.push(u);
+  }
+  users = updatedUsers;
 
   console.log(users);
   
   function block(user) {
-    for (var u in users) {
-      if (u == user) return true;
+    user = trim(user);
+    for (var i = 0; i < users.length; i ++) {
+      if (users[i] == user) return true;
     }
     return false;
   }
-  
-  if (location.pathname.match(/article_t/)) {
-  	var threads = document.querySelectorAll('.taolun_leftright a.news')
 
-  	for (var i in threads) { 
-  		var e = threads[i];
+  if (location.pathname.match(/article_t/)) {
+  	var posts = document.querySelectorAll('.wenzhang a.news');
+
+  	for (var i = 0; i < posts.length; i++) {
+      if (i % 3 != 0) continue; // Skip 进入未名形象秀 and 我的博客
+
+  		var e = posts[i];
       var author = e.innerHTML;
   		if (block(author)){
   			console.log('Blocked post by ' + author);
   			var attr = document.createAttribute('style');
   			attr.value = 'display:none';
-  			e.parentNode.parentNode.setAttributeNode(attr);
+  			e.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.setAttributeNode(attr);
   		}
   	}
   } else if (location.pathname.match(/bbsdoc/)) {
-  	var threads = document.querySelectorAll('.taolun_leftright a.news')
+  	var threads = document.querySelectorAll('.taolun_leftright a.news');
 
-  	for (var i in threads) { 
+  	for (var i = 0; i < threads.length; i++) {
+      if (i % 2 == 1) continue; // Skip check last reply author
+
   		var e = threads[i];
       var author = e.innerHTML;
   		if (block(author)){
