@@ -1,0 +1,14 @@
+Mitbbs Blocker (for Google Chrome browser)
+
+
+This Chrome extention can block mitbbs posts by unwelcome users.
+
+It can be installed from Chrome Web Store (https://chrome.google.com/webstore/detail/bpnclckdbddgijcgcblfnhegkcmilnah)
+
+After installation, you have to add users you want to block on the options page by following below instructions.
+
+Chrome Menu  =>  Windows  =>  Extensions  =>  On the Chrome extension page, click Options next to Mitbbs Blocker
+
+Note: add one user per row.
+
+If you find this extension useful, please feel free to send a few 包子 to me - appoolloo. Even though I do not like 包子, sometimes I need them to access resources other people share on mitbbs.

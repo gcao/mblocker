@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd .. && zip -r mblocker.zip mblocker -i *.html *.js *.json icon-128.png
