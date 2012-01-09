@@ -1,0 +1,38 @@
+<html>
+<head><title>Mitbbs Blocker Options</title></head>
+<script type="text/javascript">
+
+// Saves options to localStorage.
+function save_options() {
+  var users = document.getElementById("users").value;
+  localStorage["users"] = users;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var users = localStorage['users'];
+  if (!users) return;
+  
+  document.getElementById('users').value = users;
+}
+
+</script>
+
+<body onload="restore_options()">
+
+Users to block:<br/>
+<textarea id='users' rows="15" cols="40">
+</textarea>
+
+<br>
+<button onclick="save_options()">Save</button>
+<span id="status">
+</body>
+</html>

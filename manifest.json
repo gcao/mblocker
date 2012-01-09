@@ -1,0 +1,19 @@
+{
+  "name": "Mitbbs Blocker",
+  "version": "1.0",
+  "description": "Blocks post by unwelcomed users",
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "icons" : {
+    "128": "icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.mitbbs.com/*"],
+      "js": ["mblocker.js"]
+    }
+  ],
+  "permissions": [
+    "tabs", "http://www.mitbbs.com/*"
+  ]
+}
