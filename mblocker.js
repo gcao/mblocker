@@ -30,7 +30,22 @@ chrome.extension.sendRequest({method: "getLocalStorage", key: "users"}, function
     return false;
   }
 
-  if (location.pathname.match(/article_t/)) {
+  if (location.pathname == '/') {
+  	var threads = document.querySelectorAll('.hkindex td > a.a2');
+
+  	for (var i = 0; i < threads.length; i++) {
+      if (i % 2 == 1) continue; // Skip check last reply author
+
+  		var e = threads[i];
+      var author = e.innerHTML;
+  		if (block(author)){
+  			console.log('Blocked post by ' + author);
+  			var attr = document.createAttribute('style');
+  			attr.value = 'display:none';
+  			e.parentNode.parentNode.setAttributeNode(attr);
+  		}
+  	}
+  } else if (location.pathname.match(/article_t/)) {
   	var posts = document.querySelectorAll('.wenzhang a.news');
 
   	for (var i = 0; i < posts.length; i++) {
