@@ -1,6 +1,6 @@
 {
   "name": "Mitbbs Blocker",
-  "version": "1.1.2",
+  "version": "1.1.5",
   "description": "Block post by unwelcome users. The source code of this is located at http://github.com/gcao/mblocker",
   "background_page": "background.html",
   "options_page": "options.html",
